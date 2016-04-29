@@ -1,0 +1,20 @@
+<!-- Partial 4 comment-->
+<h2>Comments:</h2>
+				<%@comments.each do |comment| %>
+					<ul>
+						<li>
+						<%if comment.concert_id == concert.id %>
+							<strong>Author => </strong><%=comment.name %> ,
+							<strong>Comment => </strong> <%=comment.content %> 
+						<%end%>
+						</li>
+					</ul>
+				<%end%>
+				<form action="/comments/create" method="POST">
+					<input type="text" name="comment[name]" placeholder="Name"></input>
+					<input type="text" name="comment[content]" placeholder="Add your text here!"></input>
+					<input type="hidden" name="concert[id]" value="<%=concert.id %>" ></input>
+					<input type="hidden" name="authenticity_token"
+	     			 value="<%= form_authenticity_token %>">
+					<button type="submit">Send Comment</button>
+				</form>

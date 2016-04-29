@@ -4,6 +4,7 @@ class ConcertsController < ApplicationController
 		@concerts = Concert.all
 		@today_concerts = Concert.where(date: Date.today.beginning_of_day ..Date.today.end_of_day)
 		@month_concerts = Concert.where(date: Date.today.beginning_of_month ..Date.today.end_of_month)
+		@comments = Comment.all
 	end
 
 	def show

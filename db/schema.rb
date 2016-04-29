@@ -16,9 +16,12 @@ ActiveRecord::Schema.define(version: 20160429105941) do
   create_table "comments", force: :cascade do |t|
     t.text     "name"
     t.text     "content"
+    t.integer  "concert_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "comments", ["concert_id"], name: "index_comments_on_concert_id"
 
   create_table "concerts", force: :cascade do |t|
     t.text     "artist"
