@@ -1,0 +1,13 @@
+
+<h3>Create a new Gig: </h3>
+<form action="/concerts/create" method="POST">
+	<input type="text" name="concert[artist]" placeholder="Artist" ></input>
+	<input type="text" name="concert[venue]" value="Venue" ></input>
+	<input type="text" name="concert[city]" value="City" ></input>
+	<input type="date" name="concert[date]" value="Date" ></input>
+	<input type="number" name="concert[price]" value="Price" ></input>
+	<input type="text" name="concert[description]" value="Description" ></input>
+	<input type="hidden" name="authenticity_token"
+     value="<%= form_authenticity_token %>">
+	<button type="submit">Add Gig</button>	
+</form>

@@ -1,0 +1,85 @@
+<h2 style ="color: green">
+<% if flash[:notice] %> 
+  <%= flash[:notice] %> 
+<% end %> 
+
+<% if flash[:alert] %> 
+  <%= flash[:alert] %> 
+<% end %> </h2>
+<div style="width: 500px; padding-left: 100px; display: inline-block;">
+	<h2>Today Concerts: </h2>
+	<%if !@today_concerts.nil?%>
+		<%@today_concerts.each do |concert| %>
+			<li>
+				<strong>Artist => </strong><%=concert.artist %> ,
+				<strong>Venue => </strong> <%=concert.venue %> ,
+				<strong>City => </strong><%=concert.city %> ,
+				<strong>Date => </strong><%=concert.date %> ,
+				<strong>Price =></strong> <%=concert.price %> ,
+				<strong>Description =></strong> <%=concert.description %> ,
+				<form action="/concerts/show" method="POST">
+					<input type="hidden" name="concert[id]" value="<%=concert.id %>" ></input>
+					<input type="hidden" name="authenticity_token"
+	     			 value="<%= form_authenticity_token %>">
+					<button type="submit">View Details</button>	
+				</form>
+				<hr/>
+			</li>
+		<%end%>
+		<%else%>
+			<h2 style="color:red;">No Gigs for Today</h2>
+		<%end%>
+	</ul>
+
+	<h2>All Gigs</h2>
+	<ul>
+		<%@concerts.each do |concert| %>
+			<li>
+				<h3>Concerts: </h3>
+				<strong>Artist => </strong><%=concert.artist %> ,
+				<strong>Venue => </strong> <%=concert.venue %> ,
+				<strong>City => </strong><%=concert.city %> ,
+				<strong>Date => </strong><%=concert.date %> ,
+				<strong>Price =></strong> <%=concert.price %> ,
+				<strong>Description =></strong> <%=concert.description %> ,
+				<form action="/concerts/show" method="POST">
+					<input type="hidden" name="concert[id]" value="<%=concert.id %>" ></input>
+					<input type="hidden" name="authenticity_token"
+	     			 value="<%= form_authenticity_token %>">
+					<button type="submit">View Details</button>	
+				</form>
+				<hr/>
+			</li>
+		<%end%>
+	</ul>
+</div>
+
+<aside style="width: 400px; margin-top: 40px; float: left;">
+	<h2>This Month Concerts: </h2>
+	<%if !@month_concerts.nil?%>
+		<%@month_concerts.each do |concert| %>
+			<li>
+				<strong>Artist => </strong><%=concert.artist %> ,
+				<strong>Venue => </strong> <%=concert.venue %> ,
+				<strong>City => </strong><%=concert.city %> ,
+				<strong>Date => </strong><%=concert.date %> ,
+				<strong>Price =></strong> <%=concert.price %> ,
+				<strong>Description =></strong> <%=concert.description %> ,
+				<form action="/concerts/show" method="POST">
+					<input type="hidden" name="concert[id]" value="<%=concert.id %>" ></input>
+					<input type="hidden" name="authenticity_token"
+	     			 value="<%= form_authenticity_token %>">
+					<button type="submit">View Details</button>	
+				</form>
+				<hr/>
+			</li>
+		<%end%>
+		<%else%>
+			<h2 style="color:red;">No Gigs for this Month</h2>
+		<%end%>
+	</ul>
+	<br>
+	<br>
+	<h2><%= link_to("Add New Gig", "/concerts/new") %></h2>
+</aside>
+
